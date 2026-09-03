@@ -212,6 +212,21 @@ Individual tests:
 npx playwright test tests/login.spec.ts
 npx playwright test tests/purchase.spec.ts
 ```
+## ✅ Test Execution Evidence
+
+The assessment suite was executed successfully using Playwright with Firefox.
+
+| Metric | Result |
+|---|---:|
+| Tests | 2 |
+| Passed | 2 |
+| Failed | 0 |
+| Flaky | 0 |
+| Skipped | 0 |
+
+### Playwright HTML Report
+
+![Playwright Test Execution Report](docs/images/playwright-test-report.png)
 
 ## 📊 HTML Report
 
