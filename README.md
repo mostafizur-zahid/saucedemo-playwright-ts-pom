@@ -1,42 +1,36 @@
-# SauceDemo Playwright Automation
+<div align="center">
 
-<p align="center">
-  <strong>End-to-end web automation framework using Playwright, TypeScript, @playwright/test, and Page Object Model.</strong>
+# 🎭 SauceDemo Playwright Automation
+
+### End-to-End E-Commerce UI Automation with Playwright + TypeScript + POM
+
+<p>
+<img src="https://img.shields.io/badge/Playwright-1.62%2B-2EAD33?logo=playwright&logoColor=white">
+<img src="https://img.shields.io/badge/TypeScript-5.9%2B-3178C6?logo=typescript&logoColor=white">
+<img src="https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white">
+<img src="https://img.shields.io/badge/Architecture-POM-6C63FF">
+<img src="https://img.shields.io/badge/Firefox-Verified-FF7139?logo=firefox&logoColor=white">
 </p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Playwright-%40playwright%2Ftest-2EAD33?logo=playwright&logoColor=white" alt="Playwright">
-  <img src="https://img.shields.io/badge/TypeScript-5.9%2B-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white" alt="Node.js">
-  <img src="https://img.shields.io/badge/Pattern-Page%20Object%20Model-4C6EF5" alt="POM">
-  <img src="https://img.shields.io/badge/Browsers-Firefox%20%7C%20Chromium-4B8BBE" alt="Browsers">
-</p>
+**✅ 2 Tests Passed &nbsp; | &nbsp; ❌ 0 Failed &nbsp; | &nbsp; 🦊 Firefox Verified**
 
-> A maintainable SQA automation project for testing the SauceDemo e-commerce application.
-
-**Application Under Test:** https://www.saucedemo.com/
+</div>
 
 ---
 
-## Project Overview
+## 🚀 What Is This?
 
-This project implements the **Playwright Assessment (TS/JS Ecosystem — `@playwright/test`)** using the SauceDemo e-commerce practice application.
+A clean, maintainable **SQA web automation framework** built with **Playwright + TypeScript + `@playwright/test`**, using [SauceDemo](https://www.saucedemo.com/) as the application under test.
 
-The framework follows **Page Object Model (POM)** so that:
-
-- Page classes own locators and UI actions.
-- Test specifications contain business flow and assertions.
-- Playwright configuration is centralized.
-- Tests use resilient locators and Playwright auto-waiting.
-- HTML reporting is enabled for execution evidence.
+The project follows **Page Object Model (POM)** to keep UI interaction logic separate from business-level test scenarios.
 
 ---
 
-## Test Coverage
+## 🎯 Automated Scenarios
 
-### Negative Login
+### 🔐 Negative Login
 
-Verifies that a locked-out user cannot log in.
+Validates that a locked-out user cannot log in.
 
 ```text
 Username: locked_out_user
@@ -49,16 +43,14 @@ Expected:
 Epic sadface: Sorry, this user has been locked out.
 ```
 
-### End-to-End Purchase
-
-The test performs the complete shopping workflow:
+### 🛒 End-to-End Purchase
 
 ```text
 Login
   ↓
-Sort by Price: Low → High
+Sort by Price (low → high)
   ↓
-Select cheapest + most expensive products
+Find cheapest + most expensive products
   ↓
 Add both products to cart
   ↓
@@ -66,7 +58,7 @@ Verify cart contents
   ↓
 Checkout
   ↓
-Enter customer information
+Enter customer details
   ↓
 Finish order
   ↓
@@ -75,7 +67,48 @@ Verify "Thank you for your order!"
 
 ---
 
-## Framework Structure
+## 🏗️ Framework Architecture
+
+```text
+                    TEST SPECS
+          ┌──────────────────────────┐
+          │ login.spec.ts            │
+          │ purchase.spec.ts         │
+          └────────────┬─────────────┘
+                       │
+                       ▼
+                PLAYWRIGHT FIXTURE
+                 src/fixtures/test.ts
+                       │
+                       ▼
+                  PAGE OBJECTS
+       ┌─────────────────────────────────┐
+       │ LoginPage                        │
+       │ InventoryPage                    │
+       │ CartPage                         │
+       │ CheckoutPage                     │
+       └───────────────┬─────────────────┘
+                       │
+                       ▼
+                 PLAYWRIGHT
+                       │
+                       ▼
+                  SAUCEDEMO
+```
+
+### Separation of Responsibilities
+
+| Layer | Responsibility |
+|---|---|
+| **Test Specs** | Business flow + assertions |
+| **Page Objects** | Locators + UI actions |
+| **Fixtures** | Reusable page-object setup |
+| **Config** | Browser, timeout, reporter, base URL |
+| **Playwright** | Browser automation + synchronization |
+
+---
+
+## 📂 Project Structure
 
 ```text
 saucedemo-playwright-ts-pom/
@@ -83,7 +116,6 @@ saucedemo-playwright-ts-pom/
 ├── src/
 │   ├── fixtures/
 │   │   └── test.ts
-│   │
 │   └── pages/
 │       ├── LoginPage.ts
 │       ├── InventoryPage.ts
@@ -102,35 +134,13 @@ saucedemo-playwright-ts-pom/
 └── README.md
 ```
 
-### Page Object Responsibilities
-
-| Page Object | Responsibility |
-|---|---|
-| `LoginPage` | Navigation, credentials, login, and error handling |
-| `InventoryPage` | Sorting, product selection, product names, and cart navigation |
-| `CartPage` | Cart verification and checkout navigation |
-| `CheckoutPage` | Checkout details, order completion, and success validation |
-
 ---
 
-## Technology Stack
+## 🧪 Test Design
 
-| Technology | Role |
-|---|---|
-| **Playwright** | Browser automation |
-| **@playwright/test** | Test runner and assertions |
-| **TypeScript** | Automation language |
-| **Node.js / npm** | Runtime and dependency management |
-| **Page Object Model** | Framework architecture |
-| **HTML Reporter** | Test reporting |
-| **Firefox / Chromium** | Browser projects |
-| **Git / GitHub** | Version control |
+### Resilient Locators
 
----
-
-## Locator Strategy
-
-The framework prioritizes stable Playwright locators:
+The framework prioritizes Playwright's recommended locator strategies:
 
 ```ts
 page.getByTestId(...)
@@ -138,38 +148,23 @@ page.getByRole(...)
 page.locator(...)
 ```
 
-SauceDemo uses `data-test` attributes, so the configuration maps Playwright test IDs to `data-test`:
+SauceDemo uses `data-test`, so the configuration maps:
 
 ```ts
 testIdAttribute: 'data-test'
 ```
 
-Test specifications do not contain inline locator queries; locators and page interactions remain inside the Page Objects.
+### Synchronization
 
----
+The framework relies on Playwright **auto-waiting** and **web-first assertions**.
 
-## Reliability
-
-The framework relies on Playwright's built-in synchronization rather than hard-coded delays.
-
-**Used:**
-
-- Playwright auto-waiting
-- Web-first assertions
-- Stable test IDs
-- Role-based locators
-- Centralized configuration
-- Failure screenshots
-- Failure video
-- Trace on first retry
-
-**Avoided:**
+No hard-coded delays such as:
 
 ```ts
 page.waitForTimeout(...)
 ```
 
-The final purchase validation uses:
+The purchase test finishes with:
 
 ```ts
 await expect(locator).toHaveText('Thank you for your order!');
@@ -177,118 +172,106 @@ await expect(locator).toHaveText('Thank you for your order!');
 
 ---
 
-## Configuration
+## ⚙️ Configuration
 
-Global settings are maintained in `playwright.config.ts`.
+Global settings are centralized in `playwright.config.ts`.
 
 ```text
 Base URL        https://www.saucedemo.com/
 Test timeout    30 seconds
 Expect timeout  5 seconds
 Headless        true
-Browsers        Chromium + Firefox
+Browsers        Firefox + Chromium
 Reporter        HTML + list
+Trace           On first retry
+Screenshot      On failure
+Video           On failure
 ```
 
 ---
 
-## Getting Started
+## ▶️ Quick Start
 
-### Prerequisites
-
-- Node.js
-- npm
-- VS Code or another TypeScript-capable IDE
-- Firefox and/or Chromium
-- Internet connection
-
-### Install dependencies
+### Install
 
 ```bash
 npm install
 ```
 
-### Install Playwright browsers
+### Install browsers
 
 ```bash
 npx playwright install
 ```
 
-On Linux, when required:
+Linux dependencies, when required:
 
 ```bash
 npx playwright install --with-deps
 ```
 
----
-
-## Run Tests
-
-Full configured suite:
+### Run everything
 
 ```bash
 npx playwright test
 ```
 
-Firefox only:
+### Run Firefox
 
 ```bash
 npx playwright test --project=firefox
 ```
 
-Chromium only:
+### Run Chromium
 
 ```bash
 npx playwright test --project=chromium
 ```
 
-Headed mode:
+### Run headed
 
 ```bash
 npx playwright test --headed
 ```
 
-Individual scenarios:
+### Run UI mode
 
 ```bash
-npx playwright test tests/login.spec.ts
-npx playwright test tests/purchase.spec.ts
+npx playwright test --ui
 ```
-## ✅ Test Execution Evidence
 
-The assessment suite was executed successfully using Playwright with Firefox.
-
-| Metric | Result |
-|---|---:|
-| Tests | 2 |
-| Passed | 2 |
-| Failed | 0 |
-| Flaky | 0 |
-| Skipped | 0 |
-
-### Playwright HTML Report
-
-![Playwright Test Execution Report](docs/images/playwright-test-report.png)
-
-Type check:
+### Type-check
 
 ```bash
 npm run typecheck
 ```
 
+### Open HTML report
+
+```bash
+npx playwright show-report
+```
+
 ---
 
-## Test Execution Evidence
+## 📊 Test Execution Evidence
 
-The required Firefox assessment suite was executed successfully:
+### Firefox — Verified
 
 | Metric | Result |
 |---|---:|
-| Tests | 2 |
-| Passed | 2 |
-| Failed | 0 |
-| Flaky | 0 |
-| Skipped | 0 |
+| Tests | **2** |
+| Passed | **2** |
+| Failed | **0** |
+| Flaky | **0** |
+| Skipped | **0** |
+
+**Passing scenarios**
+
+```text
+✓ Negative Login
+✓ End-to-End Purchase
+```
 
 ### Playwright Report
 
@@ -296,71 +279,88 @@ The required Firefox assessment suite was executed successfully:
 
 ---
 
-## HTML Report
-
-After a test run:
-
-```bash
-npx playwright show-report
-```
-
-The generated report is stored in:
-
-```text
-playwright-report/
-```
-
-This directory is excluded from Git.
-
----
-
-## Assessment Checklist
+## ✅ Assessment Coverage
 
 | Requirement | Status |
 |---|:---:|
 | Page Object Model | ✅ |
 | Playwright Locator objects | ✅ |
-| No inline locator queries in specs | ✅ |
+| No inline locators in specs | ✅ |
 | `@playwright/test` | ✅ |
 | Centralized `playwright.config.ts` | ✅ |
-| Locked-out login test | ✅ |
-| End-to-end purchase test | ✅ |
-| Low-to-high product sorting | ✅ |
+| Locked-out login | ✅ |
+| End-to-end purchase | ✅ |
+| Low-to-high sorting | ✅ |
 | Cheapest + most expensive products | ✅ |
 | Cart verification | ✅ |
 | Checkout completion | ✅ |
 | `toHaveText()` success assertion | ✅ |
-| Playwright auto-waiting | ✅ |
+| Auto-waiting | ✅ |
 | Resilient locators | ✅ |
 | HTML Reporter | ✅ |
 
 ---
 
-## Repository Purpose
+## 🛠️ Why This Framework Is Maintainable
 
-This project is part of my **Software Quality Assurance and Test Automation portfolio**.
+**Readable tests**  
+Business scenarios remain easy to understand.
 
-It demonstrates practical work with web UI automation, framework design, Page Object Model, TypeScript, Playwright, and Git/GitHub.
+**Reusable page objects**  
+UI changes can be isolated inside the relevant Page Object.
+
+**Centralized configuration**  
+Browsers, timeouts, reporters, and base URL are managed in one place.
+
+**Better synchronization**  
+Playwright's built-in waiting and web-first assertions reduce timing-related failures.
+
+**Debug-friendly**  
+Failure screenshots, video, and trace-on-retry are configured.
 
 ---
 
-# About Me
+## 🔮 Future Roadmap
+
+```text
+Data-Driven Testing
+        ↓
+Authentication State Reuse
+        ↓
+API + UI Hybrid Testing
+        ↓
+Parallel Execution
+        ↓
+GitHub Actions CI/CD
+        ↓
+Advanced Reporting
+```
+
+---
+
+# 👨‍💻 About Me
 
 ## Md Mostafizur Rahman Zahid
 
 **CSE Graduate · SQA · Aspiring Security Engineer · Cybersecurity & DevSecOps Learner**
 
-I am a Computer Science & Engineering graduate building practical skills in **Software Quality Assurance, Test Automation, Cybersecurity, Linux, DevSecOps, Cloud, and software engineering**.
+I am a Computer Science & Engineering graduate building practical expertise in:
 
-My focus is on building reliable automation frameworks, improving software quality practices, and developing strong engineering fundamentals.
+**Software Quality Assurance · Test Automation · Cybersecurity · Linux · DevSecOps · Cloud · Software Engineering**
 
-### Connect
+My focus is on building reliable automation frameworks, improving software quality practices, and developing strong engineering fundamentals with a security-aware mindset.
 
-- GitHub: https://github.com/mostafizur-zahid
-- LinkedIn: https://www.linkedin.com/in/mostafizur-zahid/
+### 🔗 Connect
+
+- **GitHub:** https://github.com/mostafizur-zahid
+- **LinkedIn:** https://www.linkedin.com/in/mostafizur-zahid/
 
 ---
 
-<p align="center">
-  <strong>Playwright · TypeScript · @playwright/test · Page Object Model</strong>
-</p>
+<div align="center">
+
+**Playwright • TypeScript • @playwright/test • Page Object Model**
+
+⭐ Built as part of my SQA & Test Automation portfolio.
+
+</div>
